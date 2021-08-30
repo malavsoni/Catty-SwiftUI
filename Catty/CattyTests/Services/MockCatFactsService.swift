@@ -14,7 +14,7 @@ class MockCatFactsService:CatFactsService {
         self.expectedResult = expectedResult
         super.init()
     }
-    override func fetchFacts(completion: @escaping (Result<[CatFact], Error>) -> Void) {
-        completion(.success(expectedResult))
+    override func fetchFacts() async throws -> [CatFact] {
+        return expectedResult
     }
 }

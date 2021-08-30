@@ -7,7 +7,7 @@
 
 import Foundation
 protocol UserRepositoryProtocol {
-    func fetchUser(completion:@escaping (Result<[User], Error>) -> Void) -> Void
+    func fetchUser() async throws -> [User]
 }
 
 class UserRepository: UserRepositoryProtocol {
@@ -17,7 +17,7 @@ class UserRepository: UserRepositoryProtocol {
         self.remoteDataSource = remoteDataSource
     }
     
-    func fetchUser(completion: @escaping (Result<[User], Error>) -> Void) {
-        self.remoteDataSource.fetchUser(completion: completion)
+    func fetchUser() async throws -> [User] {
+        return try await self.remoteDataSource.fetchUser()
     }
 }

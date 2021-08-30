@@ -7,7 +7,7 @@
 
 import Foundation
 protocol CatFactsRepositoryProtocol {
-    func fetchFacts(completion:@escaping (Result<[CatFact], Error>) -> Void) -> Void
+    func fetchFacts() async throws -> [CatFact]
 }
 
 class CatFactsRepository: CatFactsRepositoryProtocol {
@@ -17,7 +17,7 @@ class CatFactsRepository: CatFactsRepositoryProtocol {
         self.remoteDataSource = remoteDataSource
     }
     
-    func fetchFacts(completion:@escaping (Result<[CatFact], Error>) -> Void) -> Void {
-        self.remoteDataSource.fetchFacts(completion: completion)
+    func fetchFacts() async throws -> [CatFact] {
+        return try await self.remoteDataSource.fetchFacts()
     }
 }

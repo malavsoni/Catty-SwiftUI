@@ -45,12 +45,7 @@ struct CatLoversView: View {
         .background(Color.white.opacity(0.9))
         .background(color.ignoresSafeArea())
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.viewModel.getFacts()
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.viewModel.getUsers()
-            }
+            self.viewModel.fetchInfo()
         }
         .navigationTitle("Welcome Malav!")
     }

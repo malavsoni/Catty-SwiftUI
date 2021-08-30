@@ -8,6 +8,7 @@
 import Foundation
 
 final class CatLoversViewModel:ObservableObject {
+    
     private let userRepository:UserRepositoryProtocol
     private let catFactsRepository:CatFactsRepositoryProtocol
     
@@ -22,38 +23,14 @@ final class CatLoversViewModel:ObservableObject {
         self.userRepository = userRepository
     }
     
-    func getUsers() {
-        self.userRepository.fetchUser { result in
-            switch result {
-                case .success(let users):
-                    if Thread.current.isRunningXCTest {
-                        self.users = users
-                    } else {
-                        OperationQueue.main.addOperation {
-                            self.users = users
-                        }
-                    }
-                    break
-                case .failure( _):
-                    break
-            }
-        }
-    }
-    
-    func getFacts() {
-        self.catFactsRepository.fetchFacts { result in
-            switch result {
-                case .success(let facts):
-                    if Thread.current.isRunningXCTest {
-                        self.facts = facts
-                    } else {
-                        OperationQueue.main.addOperation {
-                            self.facts = facts
-                        }
-                    }
-                    break
-                case .failure( _):
-                    break
+    @MainActor
+    func fetchInfo() {
+        Task {
+            do {
+                self.users = try await self.userRepository.fetchUser()
+                self.facts = try await self.catFactsRepository.fetchFacts()
+            } catch let error {
+              print(error)
             }
         }
     }

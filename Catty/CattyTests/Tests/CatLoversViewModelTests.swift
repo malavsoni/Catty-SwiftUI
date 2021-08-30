@@ -31,19 +31,15 @@ class CatLoversViewModelTests: XCTestCase {
         )
     }
 
-    func testGetUsersMethod() throws {
-        // When
-        viewModel.getUsers()
-        // Then
-        XCTAssertTrue(viewModel.users.count == expectedUsers.count)
-        XCTAssertTrue(viewModel.users.first?.name == expectedUsers.first?.name)
-    }
-    
-    func testGetCatFactsMethod() throws {
-        // When
-        viewModel.getFacts()
-        // Then
-        XCTAssertTrue(viewModel.facts.count == expectedCatFact.count)
-        XCTAssertTrue(viewModel.facts.first?.fact == expectedCatFact.first?.fact)
+    @MainActor func testFetchInfo() throws {
+        Task {
+            // When
+            viewModel.fetchInfo()
+            // Then
+            XCTAssertTrue(viewModel.users.count == expectedUsers.count)
+            XCTAssertTrue(viewModel.users.first?.name == expectedUsers.first?.name)
+            XCTAssertTrue(viewModel.facts.count == expectedCatFact.count)
+            XCTAssertTrue(viewModel.facts.first?.fact == expectedCatFact.first?.fact)
+        }
     }
 }

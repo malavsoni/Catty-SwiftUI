@@ -15,7 +15,7 @@ class MockUserService:UserService,MockResult {
         super.init()
     }
     
-    override func fetchUser(completion: @escaping (Result<[User], Error>) -> Void) {
-        completion(.success(self.expectedResult))
+    override func fetchUser() async throws -> [User] {
+        return self.expectedResult
     }
 }

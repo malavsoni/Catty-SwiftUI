@@ -10,7 +10,6 @@
 		B6FCA0CB26DCA23500243CAC /* CattyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA0CA26DCA23500243CAC /* CattyApp.swift */; };
 		B6FCA0CF26DCA23600243CAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6FCA0CE26DCA23600243CAC /* Assets.xcassets */; };
 		B6FCA0D226DCA23600243CAC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6FCA0D126DCA23600243CAC /* Preview Assets.xcassets */; };
-		B6FCA0DC26DCA23600243CAC /* CattyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA0DB26DCA23600243CAC /* CattyTests.swift */; };
 		B6FCA0E626DCA23600243CAC /* CattyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA0E526DCA23600243CAC /* CattyUITests.swift */; };
 		B6FCA0E826DCA23700243CAC /* CattyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA0E726DCA23700243CAC /* CattyUITestsLaunchTests.swift */; };
 		B6FCA10B26DCA27C00243CAC /* CatLoversViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA0F626DCA27C00243CAC /* CatLoversViewModel.swift */; };
@@ -58,7 +57,6 @@
 		B6FCA0CE26DCA23600243CAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6FCA0D126DCA23600243CAC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B6FCA0D726DCA23600243CAC /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6FCA0DB26DCA23600243CAC /* CattyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CattyTests.swift; sourceTree = "<group>"; };
 		B6FCA0E126DCA23600243CAC /* CattyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FCA0E526DCA23600243CAC /* CattyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CattyUITests.swift; sourceTree = "<group>"; };
 		B6FCA0E726DCA23700243CAC /* CattyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CattyUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 		B6FCA0DA26DCA23600243CAC /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
-				B6FCA0DB26DCA23600243CAC /* CattyTests.swift */,
 				B6FCA11D26DCA61100243CAC /* Repositories */,
 				B6FCA11C26DCA61100243CAC /* Rules.swift */,
 				B6FCA12026DCA61100243CAC /* Services */,
@@ -194,9 +191,9 @@
 		B6FCA0FA26DCA27C00243CAC /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B6FCA0FD26DCA27C00243CAC /* BaseAPIService.swift */,
 				B6FCA0FB26DCA27C00243CAC /* UserService.swift */,
 				B6FCA0FC26DCA27C00243CAC /* CatFactsService.swift */,
-				B6FCA0FD26DCA27C00243CAC /* BaseAPIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -426,7 +423,6 @@
 			files = (
 				B6FCA12526DCA61100243CAC /* MockUserRepository.swift in Sources */,
 				B6FCA12326DCA61100243CAC /* CatLoversViewModelTests.swift in Sources */,
-				B6FCA0DC26DCA23600243CAC /* CattyTests.swift in Sources */,
 				B6FCA12626DCA61100243CAC /* MockCatFactsRepository.swift in Sources */,
 				B6FCA12826DCA61100243CAC /* MockUserService.swift in Sources */,
 				B6FCA12726DCA61100243CAC /* MockCatFactsService.swift in Sources */,

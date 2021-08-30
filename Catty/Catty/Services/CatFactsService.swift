@@ -8,13 +8,13 @@
 import Foundation
  
 protocol CatFactsServiceProtocol {
-    func fetchFacts(completion:@escaping (Result<[CatFact], Error>) -> Void) -> Void
+    func fetchFacts() async throws -> [CatFact]
 }
 
 class CatFactsService:BaseAPIService, CatFactsServiceProtocol {
     private let get:String = "9e563b1d-2a9e-4116-a2f4-33f4f9da64d9"
     
-    func fetchFacts(completion:@escaping (Result<[CatFact], Error>) -> Void) -> Void {
-        self.get(url: endpoint(get), expectedModel: [CatFact].self, completion: completion)
+    func fetchFacts() async throws -> [CatFact] {
+        return try await self.get(url: endpoint(get), expectedModel: [CatFact].self)
     }
 }

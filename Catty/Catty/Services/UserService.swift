@@ -8,13 +8,13 @@
 import Foundation
 
 protocol UserServiceProtocol {
-    func fetchUser(completion:@escaping (Result<[User], Error>) -> Void) -> Void
+    func fetchUser() async throws -> [User]
 }
 
 class UserService:BaseAPIService, UserServiceProtocol {
     private let get:String = "525dc509-4a30-4636-ba40-ebc8232c5125"
     
-    func fetchUser(completion: @escaping (Result<[User], Error>) -> Void) {
-        self.get(url: endpoint(get), expectedModel: [User].self, completion: completion)
+    func fetchUser() async throws -> [User] {
+        return try await self.get(url: endpoint(get), expectedModel: [User].self)
     }
 }
