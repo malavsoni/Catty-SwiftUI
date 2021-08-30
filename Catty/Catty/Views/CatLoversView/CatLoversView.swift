@@ -44,7 +44,7 @@ struct CatLoversView: View {
         .animation(.spring(), value: self.viewModel.facts)
         .background(Color.white.opacity(0.9))
         .background(color.ignoresSafeArea())
-        .onAppear {
+        .task {
             self.viewModel.fetchInfo()
         }
         .navigationTitle("Welcome Malav!")

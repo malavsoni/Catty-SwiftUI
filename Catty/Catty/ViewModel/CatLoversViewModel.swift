@@ -27,8 +27,10 @@ final class CatLoversViewModel:ObservableObject {
     func fetchInfo() {
         Task {
             do {
-                self.users = try await self.userRepository.fetchUser()
-                self.facts = try await self.catFactsRepository.fetchFacts()
+                async let cloudUsers = try self.userRepository.fetchUser()
+                async let cloudFacts = try self.catFactsRepository.fetchFacts()
+                self.users = try await cloudUsers
+                self.facts = try await cloudFacts
             } catch let error {
               print(error)
             }
