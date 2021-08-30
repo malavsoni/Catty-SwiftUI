@@ -13,3 +13,16 @@ This project is about how we can use the new features of Swift 5.5 in real world
   - UI Design with SwiftUI
   - Network Call with Async & Await
   - Unit Test cases
+
+#### App Structure
+  - View : SwiftUI Views
+  - View Model : Observable Classes
+  - Model : Struct
+  - Repositories : Classes accessing data from local or remote storage using services
+  - Services : Classes with API Implementation
+  - Utilitities and Extensions : Helper Functions
+  - Tests
+    - MockRepositories 
+    - MockServices
+    - ViewModelTest
+
