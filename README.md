@@ -2,7 +2,7 @@
 
 #### About the project
 
-This project is explains how we can use the new features of Swift 5.5 with MVVM in real world applications. This is pretty basic application which is calling few APIs and 
+This project is all about new features of Swift 5.5 and how we can use it with MVVM in real world applications. Following features of Swift 5.5 is used.
 - Async and Await
 - Main Actor
 - Task
