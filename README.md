@@ -2,7 +2,7 @@
 
 #### About the project
 
-This project is about how we can use the new features of Swift 5.5 in real world applications. 
+This project is explains how we can use the new features of Swift 5.5 with MVVM in real world applications. This is pretty basic application which is calling few APIs and 
 - Async and Await
 - Main Actor
 - Task
@@ -18,10 +18,10 @@ This project is about how we can use the new features of Swift 5.5 in real world
   - View : SwiftUI Views
   - View Model : Observable Classes
   - Model : Struct
-  - Repositories : Classes accessing data from local or remote storage using services
+  - Repositories : Classes accessing data from local or remote storage using service classes
   - Services : Classes with API Implementation
-  - Utilitities and Extensions : Helper Functions
-  - Tests
+  - Utilities and Extensions : Helper Functions
+  - Unit Tests
     - MockRepositories 
     - MockServices
     - ViewModelTest
