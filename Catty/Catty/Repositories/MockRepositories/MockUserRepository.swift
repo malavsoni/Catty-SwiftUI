@@ -5,8 +5,7 @@
 //  Created by Malav Soni on 29/08/21.
 //
 
-import Foundation
-@testable import Catty
+import Foundation 
 
 class MockUserRepository:UserRepository, MockResult {
     var expectedResult: [User]

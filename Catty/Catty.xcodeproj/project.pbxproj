@@ -27,12 +27,12 @@
 		B6FCA11726DCA27C00243CAC /* CatFactsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA10926DCA27C00243CAC /* CatFactsRepository.swift */; };
 		B6FCA11926DCA36F00243CAC /* FactCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA11826DCA36F00243CAC /* FactCardView.swift */; };
 		B6FCA12326DCA61100243CAC /* CatLoversViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA11B26DCA61100243CAC /* CatLoversViewModelTests.swift */; };
-		B6FCA12426DCA61100243CAC /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA11C26DCA61100243CAC /* Rules.swift */; };
-		B6FCA12526DCA61100243CAC /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA11E26DCA61100243CAC /* MockUserRepository.swift */; };
-		B6FCA12626DCA61100243CAC /* MockCatFactsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA11F26DCA61100243CAC /* MockCatFactsRepository.swift */; };
-		B6FCA12726DCA61100243CAC /* MockCatFactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA12126DCA61100243CAC /* MockCatFactsService.swift */; };
-		B6FCA12826DCA61100243CAC /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA12226DCA61100243CAC /* MockUserService.swift */; };
 		B6FCA12B26DCC30100243CAC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6FCA12A26DCC30100243CAC /* Launch Screen.storyboard */; };
+		B6FCA12C26DD064E00243CAC /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA11C26DCA61100243CAC /* Rules.swift */; };
+		B6FCA12D26DD071C00243CAC /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA11E26DCA61100243CAC /* MockUserRepository.swift */; };
+		B6FCA12E26DD071C00243CAC /* MockCatFactsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA11F26DCA61100243CAC /* MockCatFactsRepository.swift */; };
+		B6FCA12F26DD072100243CAC /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA12226DCA61100243CAC /* MockUserService.swift */; };
+		B6FCA13026DD072100243CAC /* MockCatFactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA12126DCA61100243CAC /* MockCatFactsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +136,7 @@
 				B6FCA12926DCBB9E00243CAC /* Info.plist */,
 				B6FCA0CA26DCA23500243CAC /* CattyApp.swift */,
 				B6FCA12A26DCC30100243CAC /* Launch Screen.storyboard */,
+				B6FCA11C26DCA61100243CAC /* Rules.swift */,
 				B6FCA0F726DCA27C00243CAC /* Models */,
 				B6FCA10726DCA27C00243CAC /* Repositories */,
 				B6FCA0FA26DCA27C00243CAC /* Services */,
@@ -159,9 +160,6 @@
 		B6FCA0DA26DCA23600243CAC /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
-				B6FCA11D26DCA61100243CAC /* Repositories */,
-				B6FCA11C26DCA61100243CAC /* Rules.swift */,
-				B6FCA12026DCA61100243CAC /* Services */,
 				B6FCA11A26DCA61100243CAC /* Tests */,
 			);
 			path = CattyTests;
@@ -196,6 +194,7 @@
 		B6FCA0FA26DCA27C00243CAC /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B6FCA12026DCA61100243CAC /* MockServices */,
 				B6FCA0FD26DCA27C00243CAC /* BaseAPIService.swift */,
 				B6FCA0FB26DCA27C00243CAC /* UserService.swift */,
 				B6FCA0FC26DCA27C00243CAC /* CatFactsService.swift */,
@@ -242,6 +241,7 @@
 		B6FCA10726DCA27C00243CAC /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				B6FCA11D26DCA61100243CAC /* MockRepositories */,
 				B6FCA10826DCA27C00243CAC /* UserRepository.swift */,
 				B6FCA10926DCA27C00243CAC /* CatFactsRepository.swift */,
 			);
@@ -256,22 +256,22 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		B6FCA11D26DCA61100243CAC /* Repositories */ = {
+		B6FCA11D26DCA61100243CAC /* MockRepositories */ = {
 			isa = PBXGroup;
 			children = (
 				B6FCA11E26DCA61100243CAC /* MockUserRepository.swift */,
 				B6FCA11F26DCA61100243CAC /* MockCatFactsRepository.swift */,
 			);
-			path = Repositories;
+			path = MockRepositories;
 			sourceTree = "<group>";
 		};
-		B6FCA12026DCA61100243CAC /* Services */ = {
+		B6FCA12026DCA61100243CAC /* MockServices */ = {
 			isa = PBXGroup;
 			children = (
 				B6FCA12126DCA61100243CAC /* MockCatFactsService.swift */,
 				B6FCA12226DCA61100243CAC /* MockUserService.swift */,
 			);
-			path = Services;
+			path = MockServices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,8 +405,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6FCA13026DD072100243CAC /* MockCatFactsService.swift in Sources */,
 				B6FCA10C26DCA27C00243CAC /* User.swift in Sources */,
+				B6FCA12F26DD072100243CAC /* MockUserService.swift in Sources */,
+				B6FCA12C26DD064E00243CAC /* Rules.swift in Sources */,
 				B6FCA11726DCA27C00243CAC /* CatFactsRepository.swift in Sources */,
+				B6FCA12D26DD071C00243CAC /* MockUserRepository.swift in Sources */,
 				B6FCA11326DCA27C00243CAC /* CatLoversView.swift in Sources */,
 				B6FCA11126DCA27C00243CAC /* thread+extension.swift in Sources */,
 				B6FCA11926DCA36F00243CAC /* FactCardView.swift in Sources */,
@@ -417,6 +421,7 @@
 				B6FCA10F26DCA27C00243CAC /* CatFactsService.swift in Sources */,
 				B6FCA11026DCA27C00243CAC /* BaseAPIService.swift in Sources */,
 				B6FCA11626DCA27C00243CAC /* UserRepository.swift in Sources */,
+				B6FCA12E26DD071C00243CAC /* MockCatFactsRepository.swift in Sources */,
 				B6FCA10D26DCA27C00243CAC /* CatFact.swift in Sources */,
 				B6FCA0CB26DCA23500243CAC /* CattyApp.swift in Sources */,
 				B6FCA11226DCA27C00243CAC /* color+extension.swift in Sources */,
@@ -427,12 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6FCA12526DCA61100243CAC /* MockUserRepository.swift in Sources */,
 				B6FCA12326DCA61100243CAC /* CatLoversViewModelTests.swift in Sources */,
-				B6FCA12626DCA61100243CAC /* MockCatFactsRepository.swift in Sources */,
-				B6FCA12826DCA61100243CAC /* MockUserService.swift in Sources */,
-				B6FCA12726DCA61100243CAC /* MockCatFactsService.swift in Sources */,
-				B6FCA12426DCA61100243CAC /* Rules.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

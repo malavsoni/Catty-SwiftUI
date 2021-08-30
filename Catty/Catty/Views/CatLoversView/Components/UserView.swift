@@ -27,6 +27,6 @@ struct UserView: View {
 
 struct UserPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        UserView(user: User(id: 1, name: "Malav Soni"))
+        UserView(user: User(name: "Malav Soni"))
     }
 }

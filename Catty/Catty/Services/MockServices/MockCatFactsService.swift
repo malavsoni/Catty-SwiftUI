@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import Catty
 
 class MockCatFactsService:CatFactsService {
     var expectedResult:[CatFact]

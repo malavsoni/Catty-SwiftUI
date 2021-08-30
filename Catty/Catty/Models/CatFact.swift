@@ -19,4 +19,9 @@ struct CatFact: Codable, Identifiable, Hashable, Equatable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }
+    
+    init(fact:String) {
+        self.length = Int.random(in: 0...1000)
+        self.fact = fact
+    }
 }

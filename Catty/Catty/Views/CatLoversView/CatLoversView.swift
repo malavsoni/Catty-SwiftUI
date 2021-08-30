@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct CatLoversView: View {
-    @StateObject private var viewModel:CatLoversViewModel = CatLoversViewModel()
+    @StateObject private var viewModel:CatLoversViewModel
     let color:Color = Color.random
+    
+    init(viewModel:CatLoversViewModel = CatLoversViewModel()) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
     var body: some View {
         List  {
             Section("Cat Lovers Around You") {
@@ -54,7 +59,23 @@ struct CatLoversView: View {
 struct CatLoversView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CatLoversView()
+            CatLoversView(viewModel: CatLoversViewModel(
+                userRepository:
+                    MockUserRepository(
+                        expectedResult:[
+                            User(name: "John Cena"),
+                            User(name: "The Rock")
+                        ]
+                    ),
+                catFactsRepository:
+                    MockCatFactsRepository(
+                        expectedResult:[
+                            CatFact(fact: "This is just a test fact"),
+                            CatFact(fact: "This is just a test fact")
+                        ]
+                    )
+                )
+            )
         }
     }
 }

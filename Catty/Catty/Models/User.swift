@@ -19,4 +19,8 @@ struct User: Codable, Identifiable, Equatable {
     var initials:String {
         self.name.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }.uppercased()
     }
+    init(name:String) {
+        self.id = Int.random(in: 0...10000)
+        self.name = name
+    }
 }
