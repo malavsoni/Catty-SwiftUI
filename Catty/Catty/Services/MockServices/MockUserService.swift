@@ -1,11 +1,11 @@
 //
-//  FakeUserService.swift
-//  FakeUserService
+//  MockUserService.swift
+//  MockUserService
 //
-//  Created by Malav Soni on 29/08/21.
+//  Created by Malav Soni on 30/08/21.
 //
 
-import Foundation 
+import Foundation
 
 class MockUserService:UserService,MockResult {
     var expectedResult:[User]
@@ -15,6 +15,6 @@ class MockUserService:UserService,MockResult {
     }
     
     override func fetchUser() async throws -> [User] {
-        return self.expectedResult
+        expectedResult
     }
 }

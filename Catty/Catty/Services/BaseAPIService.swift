@@ -1,9 +1,9 @@
-//
-//  BaseAPIService.swift
-//  BaseAPIService
-//
-//  Created by Malav Soni on 29/08/21.
-//
+    //
+    //  BaseAPIService.swift
+    //  BaseAPIService
+    //
+    //  Created by Malav Soni on 29/08/21.
+    //
 
 import Foundation
 
@@ -18,7 +18,7 @@ class BaseAPIService {
         return "\(baseURL)\(endpoint)"
     }
     func get<T:Decodable>(url:String, expectedModel:T.Type) async throws -> T {
-        try await withCheckedThrowingContinuation({ continuation in
+        try await withCheckedThrowingContinuation { continuation in
             guard let url = URL(string: url) else {
                 continuation.resume(throwing: APIServiceError.invalidURL)
                 return
@@ -33,6 +33,7 @@ class BaseAPIService {
                     continuation.resume(throwing: APIServiceError.blankResponse)
                     return
                 }
+                
                 do {
                     let decodedResponse = try JSONDecoder().decode(expectedModel.self, from: data)
                     continuation.resume(returning: decodedResponse)
@@ -40,6 +41,7 @@ class BaseAPIService {
                     continuation.resume(throwing: error)
                 }
             }.resume()
-        })
+        }
+        
     }
 }

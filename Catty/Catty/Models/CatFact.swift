@@ -16,12 +16,12 @@ struct CatFact: Codable, Identifiable, Hashable, Equatable {
         case length = "length"
     }
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
-    }
-    
     init(fact:String) {
         self.length = Int.random(in: 0...1000)
         self.fact = fact
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
     }
 }
