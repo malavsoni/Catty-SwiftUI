@@ -18,6 +18,7 @@ class CatFactsRepository: CatFactsRepositoryProtocol {
     }
     
     func fetchFacts() async throws -> [CatFact] {
+        print("Fetching Facts \(Date())")
         return try await self.remoteDataSource.fetchFacts()
     }
 }

@@ -8,31 +8,29 @@
 import Foundation
 
 final class CatLoversViewModel:ObservableObject {
-    
-    private let userRepository:UserRepositoryProtocol
-    private let catFactsRepository:CatFactsRepositoryProtocol
+    private let catsUseCase:CatsUseCaseProtocol
     
     @Published private(set) var users:[User] = []
     @Published private(set) var facts:[CatFact] = []
+    private(set) var exceptionInfo:Error?
     
     init(
-        userRepository:UserRepositoryProtocol = UserRepository(),
-        catFactsRepository:CatFactsRepositoryProtocol = CatFactsRepository()
+        catsUseCase:CatsUseCaseProtocol = CatsUseCase()
     ) {
-        self.catFactsRepository = catFactsRepository
-        self.userRepository = userRepository
+        self.catsUseCase = catsUseCase
     }
     
     @MainActor
-    func fetchInfo() {
+    func getInformation() {
         Task {
             do {
-                async let cloudUsers = try self.userRepository.fetchUser()
-                async let cloudFacts = try self.catFactsRepository.fetchFacts()
+                async let cloudUsers =  self.catsUseCase.fetchUser()
+                async let cloudFacts  =  self.catsUseCase.fetchFacts()
                 self.users = try await cloudUsers
                 self.facts = try await cloudFacts
-            } catch let error {
-              print(error)
+            } catch (let error) {
+                self.exceptionInfo = error
+                print(error)
             }
         }
     }

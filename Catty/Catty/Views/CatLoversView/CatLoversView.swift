@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CatLoversView: View {
-    @StateObject private var viewModel:CatLoversViewModel
+    @StateObject private var viewModel:CatLoversViewModel = CatLoversViewModel()
     let color:Color = Color.random
     
     init(viewModel:CatLoversViewModel = CatLoversViewModel()) {
@@ -22,13 +22,7 @@ struct CatLoversView: View {
                     if self.viewModel.users.isEmpty {
                         LoaderView()
                     } else {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(self.viewModel.users) { user in
-                                    UserView(user: user)
-                                }
-                            }.padding()
-                        }.listRowSeparator(.hidden)
+                        ActiveUsersView(users: self.viewModel.users)
                     }
                 }
                 .listRowBackground(Color.clear)
@@ -49,8 +43,8 @@ struct CatLoversView: View {
         .animation(.spring(), value: self.viewModel.facts)
         .background(Color.white.opacity(0.9))
         .background(color.ignoresSafeArea())
-        .task {
-            self.viewModel.fetchInfo()
+        .onAppear {
+            self.viewModel.getInformation()
         }
         .navigationTitle("Welcome Malav!")
     }
@@ -60,19 +54,17 @@ struct CatLoversView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             CatLoversView(viewModel: CatLoversViewModel(
-                userRepository:
-                    MockUserRepository(
+                catsUseCase: CatsUseCase(
+                    userRepository: MockUserRepository(
                         expectedResult:[
                             User(name: "John Cena"),
                             User(name: "The Rock")
                         ]
-                    ),
-                catFactsRepository:
-                    MockCatFactsRepository(
+                    ), catFactsRepository: MockCatFactsRepository(
                         expectedResult:[
-                            CatFact(fact: "This is just a test fact"),
-                            CatFact(fact: "This is just a test fact")
-                        ]
+                            CatFact(fact: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
+                            CatFact(fact: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.")
+                        ])
                     )
                 )
             )
