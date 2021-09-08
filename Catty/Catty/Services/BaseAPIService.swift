@@ -17,7 +17,8 @@ class BaseAPIService {
     func endpoint(_ endpoint:String) -> String{
         return "\(baseURL)\(endpoint)"
     }
-    func get<T:Decodable>(url:String, expectedModel:T.Type) async throws -> T {
+    
+    func get<T:Decodable>(url:String) async throws -> T {
         try await withCheckedThrowingContinuation { continuation in
             guard let url = URL(string: url) else {
                 continuation.resume(throwing: APIServiceError.invalidURL)
@@ -35,13 +36,12 @@ class BaseAPIService {
                 }
                 
                 do {
-                    let decodedResponse = try JSONDecoder().decode(expectedModel.self, from: data)
+                    let decodedResponse = try JSONDecoder().decode(T.self, from: data)
                     continuation.resume(returning: decodedResponse)
                 } catch {
                     continuation.resume(throwing: error)
                 }
             }.resume()
         }
-        
     }
 }
