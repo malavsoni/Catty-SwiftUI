@@ -18,6 +18,8 @@ class UserRepository: UserRepositoryProtocol {
     private let remoteDataSource:UserService
     private let localDataSource:UserLocalDataSource
     
+    private let backgroundQueue = OperationQueue()
+    
     init(remoteDataSource:UserService = UserRemoteService(),
          localDataSource:UserLocalDataSource = UserLocalService()
     ){
@@ -30,7 +32,15 @@ class UserRepository: UserRepositoryProtocol {
             let users = try await self.localDataSource.fetchUser()
             if users.isEmpty {
                 let users:[UserEntity] =  try await self.remoteDataSource.fetchUser()
-                try await self.localDataSource.saveAll(entities: users)
+                backgroundQueue.addOperation {
+                    Task {
+                        do {
+                            try await self.localDataSource.saveAll(entities: users)
+                        } catch {
+                            print("Failed to save users")
+                        }
+                    }
+                }
                 return users
             }
             return users
