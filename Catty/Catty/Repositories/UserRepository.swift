@@ -1,29 +1,45 @@
-//
-//  UserRepository.swift
-//  UserRepository
-//
-//  Created by Malav Soni on 29/08/21.
-//
+    //
+    //  UserRepository.swift
+    //  UserRepository
+    //
+    //  Created by Malav Soni on 29/08/21.
+    //
 
 import Foundation
+
+typealias UserLocalDataSource = UserService & SaveableService
+
 protocol UserRepositoryProtocol {
     func isUserAuthenticated() -> Bool
-    func fetchUser() async throws -> [User]
+    func fetchUser() async throws -> [UserEntity]
 }
 
 class UserRepository: UserRepositoryProtocol {
-    private let service:UserServiceProtocol
+    private let remoteDataSource:UserService
+    private let localDataSource:UserLocalDataSource
     
-    init(remoteDataSource:UserServiceProtocol = UserService()){
-        self.service = remoteDataSource
+    init(remoteDataSource:UserService = UserRemoteService(),
+         localDataSource:UserLocalDataSource = UserLocalService()
+    ){
+        self.remoteDataSource = remoteDataSource
+        self.localDataSource = localDataSource
     }
     
-    func fetchUser() async throws -> [User] {
-        print("Fetching the user \(Date())")
-        return try await self.service.fetchUser()
+    func fetchUser() async throws -> [UserEntity] {
+        do {
+            let users = try await self.localDataSource.fetchUser()
+            if users.isEmpty {
+                let users:[UserEntity] =  try await self.remoteDataSource.fetchUser()
+                try await self.localDataSource.saveAll(entities: users)
+                return users
+            }
+            return users
+        } catch {
+            return try await self.remoteDataSource.fetchUser()
+        }
     }
     
     func isUserAuthenticated() -> Bool {
-        self.service.isUserAuthenticated()
+        self.remoteDataSource.isUserAuthenticated()
     }
 }

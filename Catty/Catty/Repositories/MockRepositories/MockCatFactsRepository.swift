@@ -8,9 +8,13 @@
 import Foundation 
 
 class MockCatFactsRepository:CatFactsRepository {
-    var expectedResult: [CatFact]
-    init(expectedResult:[CatFact]) {
+    var expectedResult: [CatFactEntity]
+    init(expectedResult:[CatFactEntity]) {
         self.expectedResult = expectedResult
         super.init(remoteDataSource: MockCatFactsService(expectedResult: expectedResult))
+    }
+    
+    override func fetchFacts() async throws -> [CatFactEntity] {
+        expectedResult
     }
 }

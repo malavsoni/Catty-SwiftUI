@@ -8,9 +8,9 @@
 import Foundation 
 
 class MockUserRepository:UserRepository, MockResult {
-    var expectedResult: [User]
+    var expectedResult: [UserEntity]
     let authenticationStatus:Bool
-    init(expectedResult:[User], isUserAuthenticated:Bool = true) {
+    init(expectedResult:[UserEntity], isUserAuthenticated:Bool = true) {
         self.authenticationStatus = isUserAuthenticated
         self.expectedResult = expectedResult
         super.init(remoteDataSource: MockUserService(expectedResult: expectedResult))
@@ -18,5 +18,9 @@ class MockUserRepository:UserRepository, MockResult {
     
     override func isUserAuthenticated() -> Bool {
         self.authenticationStatus
+    }
+    
+    override func fetchUser() async throws -> [UserEntity] {
+        return expectedResult
     }
 }

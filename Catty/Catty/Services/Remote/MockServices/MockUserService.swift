@@ -7,14 +7,14 @@
 
 import Foundation
 
-class MockUserService:UserService,MockResult {
-    var expectedResult:[User]
-    init(expectedResult:[User]) {
+class MockUserService:UserRemoteService,MockResult {
+    var expectedResult:[UserEntity]
+    init(expectedResult:[UserEntity]) {
         self.expectedResult = expectedResult
         super.init()
     }
     
-    override func fetchUser() async throws -> [User] {
+    override func fetchUser() async throws -> [UserEntity] {
         expectedResult
     }
 }

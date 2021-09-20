@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ActiveUsersView: View {
-    let users:[User]
+    let users:[UserEntity]
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(self.users) { user in
+                ForEach(self.users, id:\.self) { user in
                     UserView(user: user)
                 }
             }.padding()

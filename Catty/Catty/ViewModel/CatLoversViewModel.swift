@@ -10,8 +10,8 @@ import Foundation
 final class CatLoversViewModel:ObservableObject {
     private let catsUseCase:CatsUseCaseProtocol
     
-    @Published private(set) var users:[User] = []
-    @Published private(set) var facts:[CatFact] = []
+    @Published private(set) var users:[UserEntity] = []
+    @Published private(set) var facts:[CatFactEntity] = []
     private(set) var exceptionInfo:Error?
     
     init(

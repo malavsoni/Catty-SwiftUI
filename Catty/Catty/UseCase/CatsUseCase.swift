@@ -8,8 +8,8 @@
 import Foundation
 
 protocol CatsUseCaseProtocol {
-    func fetchFacts() async throws -> [CatFact]
-    func fetchUser() async throws -> [User]
+    @discardableResult func fetchFacts() async throws -> [CatFactEntity]
+    @discardableResult func fetchUser() async throws -> [UserEntity]
 }
 
 enum CatsUseCaseError: Error {
@@ -29,15 +29,15 @@ class CatsUseCase:CatsUseCaseProtocol {
         self.catFactsRepository = catFactsRepository
         self.userRepository = userRepository
     }
-    
-    func fetchFacts() async throws -> [CatFact] {
+    @discardableResult
+    func fetchFacts() async throws -> [CatFactEntity] {
         if self.userRepository.isUserAuthenticated() {
             return try await self.catFactsRepository.fetchFacts()
         }
         throw CatsUseCaseError.userAuthorizationFailed
     }
-    
-    func fetchUser() async throws -> [User] {
+    @discardableResult
+    func fetchUser() async throws -> [UserEntity] {
         if self.userRepository.isUserAuthenticated() {
             return try await self.userRepository.fetchUser()
         }

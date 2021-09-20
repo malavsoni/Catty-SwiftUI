@@ -14,6 +14,7 @@ enum APIServiceError: Error {
 
 class BaseAPIService {
     private let baseURL:String = "https://run.mocky.io/v3/"
+    
     func endpoint(_ endpoint:String) -> String{
         return "\(baseURL)\(endpoint)"
     }

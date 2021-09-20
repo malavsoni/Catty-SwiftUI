@@ -7,14 +7,14 @@
 
 import Foundation
 
-class MockCatFactsService:CatFactsService {
-    var expectedResult:[CatFact]
-    init(expectedResult:[CatFact]) {
+class MockCatFactsService:CatFactsRemoteService {
+    var expectedResult:[CatFactEntity]
+    init(expectedResult:[CatFactEntity]) {
         self.expectedResult = expectedResult
         super.init()
     }
     
-    override func fetchFacts() async throws -> [CatFact] {
+    override func fetchFacts() async throws -> [CatFactEntity] {
         expectedResult
     }
 }

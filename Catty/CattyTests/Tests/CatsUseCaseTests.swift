@@ -10,13 +10,13 @@ import XCTest
 
 class CatsUseCaseTests: XCTestCase {
     
-    let expectedUsers:[User] = [
-        User(name: "Malav Soni"),
-        User(name: "Charles Brown")
+    let expectedUsers:[UserEntity] = [
+        UserEntity(name: "Malav Soni"),
+        UserEntity(name: "Charles Brown")
     ]
-    let expectedCatFact:[CatFact] = [
-        CatFact(fact: "Mock"),
-        CatFact(fact: "Test"),
+    let expectedCatFact:[CatFactEntity] = [
+        CatFactEntity(fact: "Mock"),
+        CatFactEntity(fact: "Test"),
     ]
     
     override func setUpWithError() throws {
@@ -36,8 +36,8 @@ class CatsUseCaseTests: XCTestCase {
             let usecase = CatsUseCase(userRepository: userRepository, catFactsRepository: catFactsRepository)
             
             // When
-            let users:[User] = try await usecase.fetchUser()
-            let facts:[CatFact] = try await usecase.fetchFacts()
+            let users:[UserEntity] = try await usecase.fetchUser()
+            let facts:[CatFactEntity] = try await usecase.fetchFacts()
             
             // Then
             XCTAssert(users.count == expectedUsers.count)

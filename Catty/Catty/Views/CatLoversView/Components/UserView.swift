@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserView: View {
-    let user:User
+    let user:UserEntity
     
     var body: some View {
         ZStack {
@@ -27,6 +27,6 @@ struct UserView: View {
 
 struct UserPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        UserView(user: User(name: "Malav Soni"))
+        UserView(user: UserEntity(name: "Malav Soni"))
     }
 }

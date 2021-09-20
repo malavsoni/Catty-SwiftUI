@@ -50,6 +50,7 @@ struct CatLoversView: View {
     }
 }
 
+#if DEBUG
 struct CatLoversView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
@@ -57,13 +58,13 @@ struct CatLoversView_Previews: PreviewProvider {
                 catsUseCase: CatsUseCase(
                     userRepository: MockUserRepository(
                         expectedResult:[
-                            User(name: "John Cena"),
-                            User(name: "The Rock")
+                            UserEntity(name: "John Cena"),
+                            UserEntity(name: "The Rock")
                         ]
                     ), catFactsRepository: MockCatFactsRepository(
                         expectedResult:[
-                            CatFact(fact: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
-                            CatFact(fact: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.")
+                            CatFactEntity(fact: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."),
+                            CatFactEntity(fact: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.")
                         ])
                     )
                 )
@@ -71,3 +72,4 @@ struct CatLoversView_Previews: PreviewProvider {
         }
     }
 }
+#endif

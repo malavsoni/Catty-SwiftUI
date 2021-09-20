@@ -6,19 +6,40 @@
 //
 
 import Foundation
+import CoreData
 
-struct User: Codable, Identifiable, Equatable {
-    let id: Int
-    let name: String
+@objc(User)
+class User:NSManagedObject, Codable {
+    @NSManaged var id: Int64
+    @NSManaged var name: String
     
-    init(name:String) {
-        self.id = Int.random(in: 0...1000)
-        self.name = name
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+    } 
+    
+    required convenience init(from decoder: Decoder) throws {
+        guard
+            let contextUserInfoKey = CodingUserInfoKey.context,
+            let managedObjectContext = decoder.userInfo[contextUserInfoKey] as? NSManagedObjectContext,
+            let entity = NSEntityDescription.entity(forEntityName: String.init(describing: User.self), in: managedObjectContext)
+        else {
+            fatalError("decode failure")
+        }
+        
+        self.init(entity: entity, insertInto: managedObjectContext)
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int64.self, forKey: .id) ?? -1
+        self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
     }
-    
-    var initials:String {
-        self.name.components(separatedBy: " ")
-            .reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }
-            .uppercased()
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        do {
+            try container.encode(id , forKey: .id)
+            try container.encode(name , forKey: .name)
+        }catch {
+            
+        }
     }
 }

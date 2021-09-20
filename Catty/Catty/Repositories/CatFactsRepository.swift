@@ -7,18 +7,33 @@
 
 import Foundation
 protocol CatFactsRepositoryProtocol {
-    func fetchFacts() async throws -> [CatFact]
+    func fetchFacts() async throws -> [CatFactEntity]
 }
 
+typealias CatFactsLocalDataSource = CatFactsService & SaveableService
+
 class CatFactsRepository: CatFactsRepositoryProtocol {
-    private let remoteDataSource:CatFactsServiceProtocol
+    private let remoteDataSource:CatFactsService
+    private let localDataSource:CatFactsLocalDataSource
     
-    init(remoteDataSource:CatFactsServiceProtocol = CatFactsService()){
+    init(remoteDataSource:CatFactsService = CatFactsRemoteService(),
+         localDataSource:CatFactsLocalDataSource = CatFactsLocalService()
+    ){
         self.remoteDataSource = remoteDataSource
+        self.localDataSource = localDataSource
     }
     
-    func fetchFacts() async throws -> [CatFact] {
-        print("Fetching Facts \(Date())")
-        return try await self.remoteDataSource.fetchFacts()
+    func fetchFacts() async throws -> [CatFactEntity] {
+        do {
+            let users = try await self.localDataSource.fetchFacts()
+            if users.isEmpty {
+                let facts:[CatFactEntity] = try await self.remoteDataSource.fetchFacts()
+                try await self.localDataSource.saveAll(entities: facts)
+                return facts
+            }
+            return users
+        } catch {
+            return try await self.remoteDataSource.fetchFacts()
+        }
     }
 }

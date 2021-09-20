@@ -12,13 +12,13 @@ class CatLoversViewModelTests: XCTestCase {
     
     var viewModel:CatLoversViewModel!
     
-    let expectedUsers:[User] = [
-        User(name: "Malav Soni"),
-        User(name: "Charles Brown")
+    let expectedUsers:[UserEntity] = [
+        UserEntity(name: "Malav Soni"),
+        UserEntity(name: "Charles Brown")
     ]
-    let expectedCatFact:[CatFact] = [
-        CatFact(fact: "Mock"),
-        CatFact(fact: "Test"),
+    let expectedCatFact:[CatFactEntity] = [
+        CatFactEntity(fact: "Mock"),
+        CatFactEntity(fact: "Test"),
     ]
     
     override func setUpWithError() throws {
