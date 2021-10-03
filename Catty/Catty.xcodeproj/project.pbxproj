@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B602B2DD2709D65D009EC8C2 /* CATabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B602B2DC2709D65D009EC8C2 /* CATabBarView.swift */; };
+		B602B2E02709D96D009EC8C2 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B602B2DF2709D96D009EC8C2 /* View+Extension.swift */; };
+		B602B2E2270A2094009EC8C2 /* CATabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B602B2E1270A2094009EC8C2 /* CATabBar.swift */; };
 		B651C32426E4BA2A005D64F9 /* CatsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B651C32326E4BA2A005D64F9 /* CatsUseCaseTests.swift */; };
 		B69CEEA226F192B70097DC2C /* BaseLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CEEA126F192B70097DC2C /* BaseLocalService.swift */; };
 		B69CEEA526F195580097DC2C /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CEEA426F195580097DC2C /* Services.swift */; };
@@ -14,6 +17,8 @@
 		B69CEEA926F195DD0097DC2C /* CatFactsLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CEEA826F195DD0097DC2C /* CatFactsLocalService.swift */; };
 		B6A3EAD226EC6CC100A19008 /* catty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B6A3EAD026EC6CC100A19008 /* catty.xcdatamodeld */; };
 		B6C9EB1926E3B24500B42874 /* CatsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9EB1826E3B24500B42874 /* CatsUseCase.swift */; };
+		B6CAE868270A231E00FD1948 /* CATabBarPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CAE867270A231E00FD1948 /* CATabBarPreferenceKey.swift */; };
+		B6CAE86A270A242700FD1948 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CAE869270A242700FD1948 /* MainView.swift */; };
 		B6D1A5AE26F7655B00CE4C3A /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1A5AD26F7655B00CE4C3A /* UserEntity.swift */; };
 		B6D1A5B026F7656500CE4C3A /* CatFactsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1A5AF26F7656500CE4C3A /* CatFactsEntity.swift */; };
 		B6FCA0CB26DCA23500243CAC /* CattyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FCA0CA26DCA23500243CAC /* CattyApp.swift */; };
@@ -63,6 +68,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B602B2DC2709D65D009EC8C2 /* CATabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CATabBarView.swift; sourceTree = "<group>"; };
+		B602B2DF2709D96D009EC8C2 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		B602B2E1270A2094009EC8C2 /* CATabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CATabBar.swift; sourceTree = "<group>"; };
 		B651C32326E4BA2A005D64F9 /* CatsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsUseCaseTests.swift; sourceTree = "<group>"; };
 		B69CEEA126F192B70097DC2C /* BaseLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLocalService.swift; sourceTree = "<group>"; };
 		B69CEEA426F195580097DC2C /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -70,6 +78,8 @@
 		B69CEEA826F195DD0097DC2C /* CatFactsLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFactsLocalService.swift; sourceTree = "<group>"; };
 		B6A3EAD126EC6CC100A19008 /* catty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = catty.xcdatamodel; sourceTree = "<group>"; };
 		B6C9EB1826E3B24500B42874 /* CatsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsUseCase.swift; sourceTree = "<group>"; };
+		B6CAE867270A231E00FD1948 /* CATabBarPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CATabBarPreferenceKey.swift; sourceTree = "<group>"; };
+		B6CAE869270A242700FD1948 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		B6D1A5AD26F7655B00CE4C3A /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		B6D1A5AF26F7656500CE4C3A /* CatFactsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFactsEntity.swift; sourceTree = "<group>"; };
 		B6FCA0C726DCA23500243CAC /* Catty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +140,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B602B2DB2709D63A009EC8C2 /* TabBarView */ = {
+			isa = PBXGroup;
+			children = (
+				B602B2DC2709D65D009EC8C2 /* CATabBarView.swift */,
+				B602B2E1270A2094009EC8C2 /* CATabBar.swift */,
+				B6CAE867270A231E00FD1948 /* CATabBarPreferenceKey.swift */,
+			);
+			path = TabBarView;
+			sourceTree = "<group>";
+		};
+		B602B2DE2709D962009EC8C2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B602B2DF2709D96D009EC8C2 /* View+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		B69CEE9F26F1928E0097DC2C /* Remote */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +223,7 @@
 				B6FCA0CA26DCA23500243CAC /* CattyApp.swift */,
 				B6FCA12A26DCC30100243CAC /* Launch Screen.storyboard */,
 				B6FCA11C26DCA61100243CAC /* Rules.swift */,
+				B602B2DE2709D962009EC8C2 /* Extensions */,
 				B6D1A5AC26F7654C00CE4C3A /* Entity */,
 				B6C9EB1726E3857F00B42874 /* UseCase */,
 				B6FCA0F726DCA27C00243CAC /* Models */,
@@ -274,7 +303,9 @@
 		B6FCA10126DCA27C00243CAC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B602B2DB2709D63A009EC8C2 /* TabBarView */,
 				B6FCA10226DCA27C00243CAC /* CatLoversView */,
+				B6CAE869270A242700FD1948 /* MainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -473,6 +504,7 @@
 			files = (
 				B6FCA10C26DCA27C00243CAC /* User.swift in Sources */,
 				B6FCA12C26DD064E00243CAC /* Rules.swift in Sources */,
+				B602B2DD2709D65D009EC8C2 /* CATabBarView.swift in Sources */,
 				B6A3EAD226EC6CC100A19008 /* catty.xcdatamodeld in Sources */,
 				B6FCA11726DCA27C00243CAC /* CatFactsRepository.swift in Sources */,
 				B6FCA12D26DD071C00243CAC /* MockUserRepository.swift in Sources */,
@@ -481,7 +513,9 @@
 				B6FCA11926DCA36F00243CAC /* FactCardView.swift in Sources */,
 				B6D1A5B026F7656500CE4C3A /* CatFactsEntity.swift in Sources */,
 				B69CEEA226F192B70097DC2C /* BaseLocalService.swift in Sources */,
+				B6CAE86A270A242700FD1948 /* MainView.swift in Sources */,
 				B6FCA11526DCA27C00243CAC /* LoaderView.swift in Sources */,
+				B6CAE868270A231E00FD1948 /* CATabBarPreferenceKey.swift in Sources */,
 				B69CEEA526F195580097DC2C /* Services.swift in Sources */,
 				B6D1A5AE26F7655B00CE4C3A /* UserEntity.swift in Sources */,
 				B6FCA11426DCA27C00243CAC /* UserView.swift in Sources */,
@@ -490,10 +524,12 @@
 				B6FCA14026DD1FFB00243CAC /* MockCatFactsService.swift in Sources */,
 				B69CEEA926F195DD0097DC2C /* CatFactsLocalService.swift in Sources */,
 				B6FCA10B26DCA27C00243CAC /* CatLoversViewModel.swift in Sources */,
+				B602B2E02709D96D009EC8C2 /* View+Extension.swift in Sources */,
 				B6FCA10F26DCA27C00243CAC /* CatFactsRemoteService.swift in Sources */,
 				B6FCA14426DD207600243CAC /* ActiveUsersView.swift in Sources */,
 				B6FCA11026DCA27C00243CAC /* BaseAPIService.swift in Sources */,
 				B6FCA14226DD202300243CAC /* MockUserService.swift in Sources */,
+				B602B2E2270A2094009EC8C2 /* CATabBar.swift in Sources */,
 				B6FCA11626DCA27C00243CAC /* UserRepository.swift in Sources */,
 				B6FCA12E26DD071C00243CAC /* MockCatFactsRepository.swift in Sources */,
 				B69CEEA726F1959B0097DC2C /* UserLocalService.swift in Sources */,

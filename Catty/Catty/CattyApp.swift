@@ -11,9 +11,7 @@ import SwiftUI
 struct CattyApp: App {
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                CatLoversView()
-            }
+            MainView()
         }
     }
 }
