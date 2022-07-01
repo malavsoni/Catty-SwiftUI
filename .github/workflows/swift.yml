@@ -16,11 +16,11 @@ jobs:
     - uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: latest-stable
-    - name: Current Xcode
-      run: xcode-select --print-path
-    - name: List Projects
-      run: xcodebuild -list -project ./Catty/Catty.xcodeproj
     - name: Build
-      run: xcodebuild -scheme Catty build
+      run: |
+        xcode-select --print-path
+        cd Catty
+        xcodebuild -list -project Catty.xcodeproj
+        xcodebuild -scheme Catty build
     - name: Run tests
       run: swift test -v
