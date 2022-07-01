@@ -16,12 +16,9 @@ jobs:
     - uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: latest-stable
+    - name: Moving
+      uses: cd Catty
     - name: Xcodebuild Action
-      with:
-        action: test
-        use-xcpretty: true
-        xcpretty-colored-output: true
-        project: ./Catty/Catty.xcodeproj
       uses: sersoft-gmbh/xcodebuild-action@v2.0
     - name: Build
       run: |
