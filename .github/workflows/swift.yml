@@ -1,4 +1,4 @@
-name: Swift
+name: CI-CD
 
 on:
   push:
@@ -13,11 +13,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_13.4.app
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+    - name: Current Xcode
       run: xcode-select --print-path
-    - name: Build
+    - name: List Projects
       run: xcodebuild -list -project Catty.xcodeproj
+    - name: Build
       run: xcodebuild -scheme Catty build
     - name: Run tests
       run: swift test -v
