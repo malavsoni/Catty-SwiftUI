@@ -22,6 +22,10 @@ jobs:
     #     target: Catty
     #     project: ./Catty/Catty.xcodeproj
     - name: Build
+      env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
       run: |
         xcode-select --print-path
         cd Catty
