@@ -21,7 +21,6 @@ jobs:
     - name: List Projects
       run: xcodebuild -list -project ./Catty/Catty.xcodeproj
     - name: Build
-      uses: devbotsxyz/xcode-build@v1
       run: xcodebuild -scheme Catty build
     - name: Run tests
       run: swift test -v
