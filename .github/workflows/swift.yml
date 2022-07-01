@@ -20,7 +20,6 @@ jobs:
       uses: sersoft-gmbh/xcodebuild-action@v2.0
       with:
         target: Catty
-        scheme: Catty
         project: ./Catty/Catty.xcodeproj
     - name: Build
       run: |
