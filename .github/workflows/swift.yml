@@ -26,6 +26,6 @@ jobs:
         xcode-select --print-path
         cd Catty
         xcodebuild -list -project Catty.xcodeproj
-        xcodebuild  -project Catty.xcodeproj -target Catty -scheme Catty build
+        xcodebuild -project Catty.xcodeproj -scheme Catty
     - name: Run tests
       run: swift test -v
