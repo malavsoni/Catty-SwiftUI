@@ -42,9 +42,9 @@ jobs:
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
       - name: Build
         run: |
-          xcode-select --print-path
+          # xcode-select --print-path
           cd Catty
-          xcodebuild -list -project Catty.xcodeproj
+          # xcodebuild -list -project Catty.xcodeproj
           xcodebuild -project Catty.xcodeproj -scheme Catty
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
@@ -57,18 +57,14 @@ jobs:
       steps:
         - name: Checkout repository
           uses: actions/checkout@v3
-
         - name: Create iPhone 13 Simulator
           run: xcrun simctl create "Fresh iPhone 13" "iPhone 13"
-
-        - name: Import Code-Signing Certificates
-          uses: Apple-Actions/import-codesign-certs@v1
-          with:
-            p12-file-base64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
-            p12-password: ${{ secrets.P12_PASSWORD }}
+        # - name: Import Code-Signing Certificates
+        #   uses: Apple-Actions/import-codesign-certs@v1
+        #   with:
+        #     p12-file-base64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+        #     p12-password: ${{ secrets.P12_PASSWORD }}
         - name: Tests
           run: |
-            xcode-select --print-path
             cd Catty
-            xcodebuild -list -project Catty.xcodeproj
             xcodebuild clean test -scheme Catty -project Catty.xcodeproj -destination 'platform=iOS Simulator,name=Fresh iPhone 13' CODE_SIGNING_ALLOWED=NO | xcpretty && exit ${PIPESTATUS[0]}
