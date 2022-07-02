@@ -59,7 +59,7 @@ jobs:
           uses: actions/checkout@v3
 
         - name: Create iPhone 13 Simulator
-          run: xcrun simctl create "iPhone 13" "iPhone 13"
+          run: xcrun simctl create "Fresh iPhone 13" "iPhone 13"
 
         - name: Import Code-Signing Certificates
           uses: Apple-Actions/import-codesign-certs@v1
@@ -71,4 +71,4 @@ jobs:
             xcode-select --print-path
             cd Catty
             xcodebuild -list -project Catty.xcodeproj
-            xcodebuild clean test -scheme Catty -project Catty.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 13' CODE_SIGNING_ALLOWED=NO | xcpretty && exit ${PIPESTATUS[0]}
+            xcodebuild clean test -scheme Catty -project Catty.xcodeproj -destination 'platform=iOS Simulator,name=Fresh iPhone 13' CODE_SIGNING_ALLOWED=NO | xcpretty && exit ${PIPESTATUS[0]}
