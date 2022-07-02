@@ -62,4 +62,5 @@ jobs:
             xcode-select --print-path
             cd Catty
             xcodebuild -list -project Catty.xcodeproj
-            xcodebuild test -scheme Catty -project Catty.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 13' | xcpretty && exit ${PIPESTATUS[0]}
+            xcodebuild clean test -scheme "Catty" CODE_SIGNING_ALLOWED=NO
+            # xcodebuild test -scheme Catty -project Catty.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 13' | xcpretty && exit ${PIPESTATUS[0]}
