@@ -42,16 +42,16 @@ jobs:
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
-    - name: Build
-      run: |
-        xcode-select --print-path
-        cd Catty
-        xcodebuild -list -project Catty.xcodeproj
-        xcodebuild -project Catty.xcodeproj -scheme Catty
-    - name: Clean up keychain and provisioning profile
-      if: ${{ always() }}
-      run: |
-        security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-        rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
-    - name: Run tests
-      run: swift test -v
+      - name: Build
+        run: |
+          xcode-select --print-path
+          cd Catty
+          xcodebuild -list -project Catty.xcodeproj
+          xcodebuild -project Catty.xcodeproj -scheme Catty
+      - name: Clean up keychain and provisioning profile
+        if: ${{ always() }}
+        run: |
+          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
+      - name: Run tests
+        run: swift test -v
