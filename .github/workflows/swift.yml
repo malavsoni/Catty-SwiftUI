@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  Build:
     runs-on: macos-latest
     steps:
       - name: Checkout repository
@@ -68,3 +68,8 @@ jobs:
           run: |
             cd Catty
             xcodebuild clean test -scheme Catty -project Catty.xcodeproj -destination 'platform=iOS Simulator,name=Fresh iPhone 13' CODE_SIGNING_ALLOWED=NO | xcpretty && exit ${PIPESTATUS[0]}
+        - name: Remove iPhone 13 Simulator
+          run: |
+            xcrun simctl erase "Fresh iPhone 13"
+            xcrun simctl shutdown "Fresh iPhone 13"
+
