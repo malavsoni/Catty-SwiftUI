@@ -8,9 +8,7 @@ on:
 
 jobs:
   build:
-
     runs-on: macos-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -53,5 +51,15 @@ jobs:
         run: |
           security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
           rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
-      - name: Run tests
-        run: swift test -v
+
+  Tests:
+      runs-on: macos-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v3
+        - name: Tests
+          run: |
+            xcode-select --print-path
+            cd Catty
+            xcodebuild -list -project Catty.xcodeproj
+            xcodebuild test -scheme Catty -project Catty.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.0' | xcpretty && exit ${PIPESTATUS[0]}
