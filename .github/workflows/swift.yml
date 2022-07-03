@@ -1,22 +1,71 @@
-name: Swift
+name: CI-CD
 
 on:
   push:
-    branches: [ master ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ master ]
+    branches: [ "master" ]
 
 jobs:
-  build:
-
+  Build:
     runs-on: macos-latest
-
     steps:
-    - uses: actions/checkout@v2 
-    - uses: maxim-lobanov/setup-xcode@v1
-      with:
-        xcode-version: '13.0'
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install the Apple certificate and provisioning profile
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+          BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          # create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          # import certificate and provisioning profile from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output $CERTIFICATE_PATH
+          echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode --output $PP_PATH
+
+          # create temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          # import certificate to keychain
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          # apply provisioning profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+      - name: Build
+        run: |
+          # xcode-select --print-path
+          cd Catty
+          # xcodebuild -list -project Catty.xcodeproj
+          xcodebuild -project Catty.xcodeproj -scheme Catty
+      - name: Clean up keychain and provisioning profile
+        if: ${{ always() }}
+        run: |
+          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
+
+  Tests:
+      runs-on: macos-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v3
+        - name: Create iPhone 13 Simulator
+          run: xcrun simctl create "Fresh iPhone 13" "iPhone 13"
+        # - name: Import Code-Signing Certificates
+        #   uses: Apple-Actions/import-codesign-certs@v1
+        #   with:
+        #     p12-file-base64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+        #     p12-password: ${{ secrets.P12_PASSWORD }}
+        - name: Tests
+          run: |
+            cd Catty
+            xcodebuild clean test -scheme Catty -project Catty.xcodeproj -destination 'platform=iOS Simulator,name=Fresh iPhone 13' CODE_SIGNING_ALLOWED=NO | xcpretty && exit ${PIPESTATUS[0]}
+
