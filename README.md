@@ -11,7 +11,7 @@ This project is all about new features of Swift 5.5 and how we can use it with M
 https://user-images.githubusercontent.com/11372923/131319787-2fd7ccd2-3f11-4a2e-a4f0-10196550cfe0.mp4
 
 #### Code Highlights
-  - XCode 15 Beta 5
+  - XCode 13.4
   - MVVM Architecture
   - UI Design with SwiftUI
   - Network Call with Async & Await
